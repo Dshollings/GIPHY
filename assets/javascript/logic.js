@@ -1,6 +1,5 @@
 var snacks = ["Taco", "Chips", "Pizza", "Pasta"];
 
-
 var mkButton = function(){
   
   $("#snacks-buttons").empty();
@@ -49,7 +48,7 @@ $(document).on("click", "#undo", function() {
 
 
 $(document).on("click", ".snack", function() {
-  
+ 
   $("#gifs").empty();
   // In this case, the "this" keyword refers to the button that was clicked
   var snackName = $(this).attr("data-snack");
@@ -71,23 +70,48 @@ $(document).on("click", ".snack", function() {
       for (var i = 0; i < results.length; i++) {
 
         if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-          
-          var gifDiv = $("<div class='gifs'>");
+
+          var gifBox = $("<div class='gifBox'>");
 
           var rating = results[i].rating;
 
           var p = $("<p>").text("Rating: " + rating);
 
-          var gif = $("<img>");
+          var gif = $("<img class='gif'>");
 
-          gif.attr("src", results[i].images.fixed_height.url);
+          gif.attr("data-state", "still");
 
-          gifDiv.append(p);
+          gif.attr("src", results[i].images.fixed_height_still.url);
 
-          gifDiv.append(gif);
+          gif.attr("still", results[i].images.fixed_height_still.url);
 
-          $("#gifs").prepend(gifDiv);
+          gif.attr("moving", results[i].images.fixed_height.url);
+
+          gif.addClass("gif")
+
+          gifBox.append(gif);
+
+          gifBox.append(p);
+
+          $("#gifs").append(gifBox);
         }
       }
+    });
+     
+     $(document).on("click", ".gif", function(){
+      
+        var state = $(this).attr("data-state");
+        
+        if (state === "still") {
+          $(this).attr("src", $(this).attr("moving"));
+          $(this).attr("data-state", "animate");
+          $(this).addClass("touched");
+        } 
+
+        else {
+          $(this).attr("src", $(this).attr("still"));
+          $(this).attr("data-state", "still");
+          $(this).removeClass("touched");
+        }
     });
 });

@@ -1,0 +1,49 @@
+body {
+	background-color: #F2F2F2;
+	text-align: center;
+}
+
+p {
+	padding: 5px;
+}
+
+.gifBox {
+	float: left;
+	padding: 5px;
+	text-align: center;
+	
+}
+
+.gif {
+	border-radius: 10px;
+	box-shadow: 5px 5px 2px black;
+}
+
+.gif:hover {
+	
+	box-shadow: 2px 2px 1px black;
+}
+
+form{
+	padding-top: 5px;
+}
+
+button {
+  color: #fff;
+  background-color: #6496c8;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #27496d;
+  padding: 5px;
+  font-size: 14px;
+}
+
+button.hover {
+  background-color: #417cb8
+}
+
+button.active {
+  background-color: #417cb8;
+  box-shadow: 0 2.5px #27496d;
+  transform: translateY(2.5px);
+}
